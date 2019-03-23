@@ -4,9 +4,9 @@ from typed_serializers.serializer import Serializer
 T = TypeVar('T')
 
 class SerializerFromClassSchema(Serializer[T]):
-    _schema: Type[T]
+    _schema: Any
 
-    def __init__(self, schema: Type[T]):
+    def __init__(self, schema: Type[T]) -> None:
         self._schema = schema
 
     def load(self, x: Any) -> T:

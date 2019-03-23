@@ -1,1 +1,2 @@
 from .datetime_from_isoformat import DatetimeFromIsoformat
+from .discriminated_union import discriminated_union

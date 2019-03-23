@@ -1,4 +1,4 @@
-from typing import Any, TypeVar, Type, Dict, get_type_hints
+from typing import Any, TypeVar, Type, Dict, get_type_hints, cast
 from typed_serializers.errors import ValidationError
 from typed_serializers.serializer import Serializer
 
@@ -43,7 +43,7 @@ class ClassSerializer(Serializer[T]):
         if errors:
             raise ValidationError(errors)
 
-        return self._class(**values)
+        return cast(Any, self._class)(**values)
 
     def dump(self, x: T) -> Any:
         result = {}

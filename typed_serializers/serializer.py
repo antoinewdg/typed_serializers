@@ -1,8 +1,10 @@
-from typing import Any, Generic, TypeVar, Union
+from typing import Any, Generic, TypeVar, Type
 
 T = TypeVar('T')
 
 class Serializer(Generic[T]):
+    output_class: Type[T]
+
     def load(self, x: Any) -> T:
         ...
 
