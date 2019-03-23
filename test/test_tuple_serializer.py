@@ -11,6 +11,7 @@ from .test_data import PRIMITIVES, DICTS
     (Tuple[int], (1,)),
     (Tuple[float, str], (1,'toto')),
     (Tuple[float, str, int], (1,'toto', 4)),
+    (Tuple[bool], (False,)),
 ])
 def test_list_valid(x, schema):
     serializer = create_serializer(schema)
@@ -22,6 +23,16 @@ def test_list_valid(x, schema):
 @pytest.mark.parametrize('schema', [Tuple[()], Tuple[None], Tuple[int, float, str]])
 @pytest.mark.parametrize('x', PRIMITIVES + DICTS)
 def test_tuple_basic_invalid(x, schema):
+    serializer = create_serializer(schema)
+    with pytest.raises(ValidationError):
+        serializer.load(x)
+
+
+@pytest.mark.parametrize('schema,x', [
+    (Tuple[()], (1,)),
+    (Tuple[int, float], (0, 'toto')),
+])
+def test_tuple_less_basic_invalid(x, schema):
     serializer = create_serializer(schema)
     with pytest.raises(ValidationError):
         serializer.load(x)
