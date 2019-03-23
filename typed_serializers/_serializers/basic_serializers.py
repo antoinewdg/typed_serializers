@@ -1,5 +1,5 @@
-from .serializer import Serializer
-from .errors import ValidationError
+from typed_serializers import ValidationError
+from typed_serializers.serializer import Serializer
 
 
 class NoneSerializer(Serializer[None]):
