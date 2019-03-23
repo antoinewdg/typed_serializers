@@ -1,4 +1,5 @@
 import inspect
+import typing
 
 from . import _serializers
 
@@ -9,11 +10,13 @@ def create_serializer(schema):
 
     # `issubclass` won't work on type from the `typing` module
     if hasattr(schema, '__origin__'):
-        if issubclass(schema.__origin__, list):
+        if schema.__origin__ == list:
             return _serializers.ListSerializer(schema.__args__[0])
-        if issubclass(schema.__origin__, type(())):
+        if schema.__origin__ == tuple:
             schemas = [] if schema.__args__ == ((), ) else schema.__args__
             return _serializers.TupleSerializer(schemas)
+        if schema.__origin__ == typing.Union:
+            return _serializers.UnionSerializer(schema.__args__)
 
 
   

@@ -7,10 +7,16 @@ from .test_data import PRIMITIVES, DICTS
 
 
 @pytest.mark.parametrize(
-    'schema,x',
-    [(int, []), (float, []), (bool, []), (int, [1, 4, -123, 1394]), (bool, [False, True, False]),
-     (List[None], []), (List[None], [[None], [], [None, None, None]]),
-     (float, (1.0, 4, -193801423.329484))]
+    'schema,x', [
+        (int, []),
+        (float, []),
+        (bool, []),
+        (int, [1, 4, -123, 1394]),
+        (bool, [False, True, False]),
+        (List[None], []),
+        (List[None], [[None], [], [None, None, None]]),
+        (float, (1.0, 4, -193801423.329484)),
+    ]
 )
 def test_list_valid(x, schema):
     serializer = create_serializer(List[schema])

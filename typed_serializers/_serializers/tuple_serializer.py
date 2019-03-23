@@ -1,12 +1,10 @@
-from typing import Tuple, Any, TypeVar, List
+from typing import Tuple, Any, List
 from typed_serializers.errors import ValidationError
 from typed_serializers.serializer import Serializer
 
-T = TypeVar('T')
-
 
 class TupleSerializer(Serializer[Tuple]):
-    _inner_serializer: List[Serializer]
+    _inner_serializers: List[Serializer]
 
     def __init__(self, inner_schemas):
         # Import needed here to avoid infinite recursion
