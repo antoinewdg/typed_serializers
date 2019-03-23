@@ -37,6 +37,8 @@ def create_serializer(schema):
         if issubclass(schema, str):
             return _serializers.StrSerializer()
 
+        return _serializers.ClassSerializer.from_class(schema)
+
     for k in dir(schema):
         print(k, getattr(schema, k))
     # print(schema.__origin__, tuple, type(()), isinstance(schema.__origin__, tuple))
