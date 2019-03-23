@@ -1,0 +1,6 @@
+NONE = [None]
+BOOLS = [False, True]
+INTS = [1, 4, -1, 428, 0, 429483208, -1828842329821]
+FLOATS = [1.0, -0.0, -1242.453294392]
+STRS = ['toto', '', 'asidjf&$*ufda', '1']
+OTHERS = [[], [1], {}, {1: 'one'}]
